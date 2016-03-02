@@ -36,9 +36,19 @@ namespace Assignment5New
 
         protected void LoadPosts()
         {
-            using (ECTDBContext context = new ECTDBContext())
+            try
             {
-                
+                using (ECTDBContext entities = new ECTDBContext())
+                {
+                    var posts = (from p in entities.Post
+                                   select p).ToList();
+                    rptPosts.DataSource = posts;
+                    rptPosts.DataBind();
+                }
+            }
+            catch (Exception)
+            {
+                lblResults.Text = "An error occurred. Please try again.";
             }
         }
 
@@ -92,7 +102,8 @@ namespace Assignment5New
                 {
                     context.Post.Add(post);
                     context.SaveChanges();
-                    Response.Redirect("Post.aspx?id=" + Session["LoggedInId"]);
+                    Response.Redirect(Request.RawUrl);
+                    //Response.Redirect("Post.aspx?id=" + Session["LoggedInId"]);
                 }
             }
         }
