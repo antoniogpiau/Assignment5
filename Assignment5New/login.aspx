@@ -1,14 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Assignment5New.login" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Assignment5New.login" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<link type="text/css" rel="stylesheet" href="style.css" />
-</head>
-<body>
-<form runat="server">
-	<div id="mainBody">
+<asp:Content ContentPlaceHolderID="MainContent" ID="mainContent" runat="server">
 		<header>
 			<hgroup>
 				<h1>Login</h1>
@@ -23,7 +15,4 @@
     	</section>
 		<footer>
 		</footer>
-	</div>
-</form>
-</body>
-</html>
+</asp:Content>

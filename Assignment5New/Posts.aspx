@@ -1,15 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Posts.aspx.cs" Inherits="Assignment5New.Posts" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Posts.aspx.cs" Inherits="Assignment5New.Posts" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <link type="text/css" rel="stylesheet" href="style.css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div id="mainBody">
+<asp:Content ContentPlaceHolderID="MainContent" ID="mainContent" runat="server">
         <header>
             <div>
 				You are logged in <asp:Label ID="lblUserFullName" runat="server"></asp:Label>. 
@@ -51,8 +42,4 @@
                     <tr><td><asp:Button runat="server" ID="btnPost" OnClick="AddPost" Text="Post"></asp:Button></td></tr>
 				</table> <br/><br/>
     	</section>
-    
-    </div>
-    </form>
-</body>
-</html>
+</asp:Content>
