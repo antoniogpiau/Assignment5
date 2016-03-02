@@ -52,7 +52,7 @@ namespace Assignment5New
             }
         }
 
-        protected void deletePost(String Id)
+        protected void DeletePost(object sender, EventArgs e)
         {
             if (Session["LoggedInId"] == null)
             {
@@ -61,8 +61,6 @@ namespace Assignment5New
 
             using (ECTDBContext context = new ECTDBContext())
             {
-                //int Id = Int32.Parse(Id);
-
                 var post = (from p in context.Post
                             select p).FirstOrDefault();
                 if (post != null)
@@ -95,7 +93,6 @@ namespace Assignment5New
                 post.UserId = id;
                 post.Title = txtTitle.Text;
                 post.Description = txtDescription.Text;
-                post.Content = txtPost.Text;
                 post.DatePosted = DateTime.Now;
 
                 if (post != null)

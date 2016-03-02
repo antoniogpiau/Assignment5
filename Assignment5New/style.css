@@ -53,7 +53,7 @@ body {
 }
 
 #mainBody {
-    width:400px;
+    width:600px;
     margin:100px auto;
     background:#fff;
     padding:20px;
@@ -96,5 +96,22 @@ table tr td input[type=submit] { background:darkgrey; color:#fff; padding:10px; 
     max-width:680px;
 }
 
-span input {
+.toggleListItem {
+    display:block;
+    width:100%;
+    padding:10px;
+    border:1px dashed #000;
+    margin-bottom:10px;
+}
+.toggleListItem h2 {
+    font-size:20px;
+    font-weight:bold;
+}
+.toggleListItem .details {
+    font-size:11px;
+    display:block;
+    margin-bottom:10px;
+}
+.toggleListItem p {
+    font-size:13px;
 }
