@@ -23,6 +23,21 @@ namespace Assignment5New
                 {
                     LoadPosts();
                     lblUserFullName.Text = Session["LastName"] + ", " + Session["FirstName"];
+
+                    using (ECTDBContext context = new ECTDBContext())
+                    {
+                        int uId = Int32.Parse(Request.QueryString["id"]);
+
+                        var userPosts = (from p in context.Post
+                                              where p.UserId == uId
+                                              select new { p.Title, p.Id }).ToList();
+
+                        ddlPosts.DataSource = userPosts;
+                        ddlPosts.DataTextField = "Title";
+                        ddlPosts.DataValueField = "Id";
+                        ddlPosts.DataBind();
+
+                    }
                 }
                 else {
                     Response.Redirect("login.aspx");
@@ -38,9 +53,11 @@ namespace Assignment5New
         {
             try
             {
+                int uId = Int32.Parse(Request.QueryString["id"]);//Session["LoggedInId"]?
                 using (ECTDBContext entities = new ECTDBContext())
                 {
                     var posts = (from p in entities.Post
+                                 //where p.UserId == uId
                                    select p).ToList();
                     rptPosts.DataSource = posts;
                     rptPosts.DataBind();
@@ -52,7 +69,7 @@ namespace Assignment5New
             }
         }
 
-        protected void DeletePost(object sender, EventArgs e)
+        protected void RemovePost(object sender, EventArgs e)
         {
             if (Session["LoggedInId"] == null)
             {
@@ -61,14 +78,18 @@ namespace Assignment5New
 
             using (ECTDBContext context = new ECTDBContext())
             {
+                var selectedPost = Int32.Parse(ddlPosts.SelectedValue);
+
                 var post = (from p in context.Post
+                            where selectedPost == p.Id
                             select p).FirstOrDefault();
+
                 if (post != null)
                 {
                     context.Post.Remove(post);
                     context.SaveChanges();
-                    lblResults.Text = "Post deleted.";
-                    Response.Redirect("Post.aspx?id=" + Session["LoggedInId"]);
+                    Response.Redirect(Request.RawUrl);
+                    //Response.Redirect("Post.aspx?id=" + Session["LoggedInId"]);
                 }
                 else
                 {

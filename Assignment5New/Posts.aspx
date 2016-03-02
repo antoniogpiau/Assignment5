@@ -19,7 +19,6 @@
                     <h2><%#Eval("Title")%></h2>
                     <span class="details">UserID:<%#Eval("UserID")%> - <%#Eval("DatePosted")%></span>
                     <p><%#Eval("Description")%></p>
-                    <%--<asp:Button runat="server" ID="btnDelete" OnClick="DeletePost" Text="Delete"></asp:Button>--%>
                 </li>
             </ItemTemplate>
             <FooterTemplate>
@@ -36,10 +35,17 @@
 	    </script>
         </br></br><hr>
         <section>
+            <h1>Create Post</h1>
 				<table>
                     <tr><td>Title:</td><td><asp:TextBox ID="txtTitle" runat="server"></asp:TextBox></td></tr>
                     <tr><td>Description:</td><td><asp:TextBox ID="txtDescription" runat="server"></asp:TextBox></td></tr>
                     <tr><td><asp:Button runat="server" ID="btnPost" OnClick="AddPost" Text="Post"></asp:Button></td></tr>
 				</table> <br/><br/>
+
+            <h1>Remove Post</h1>
+            <asp:DropDownList ID="ddlPosts" AutoPostBack="False" runat="server">
+            </asp:DropDownList>
+            <asp:Button runat="server" ID="btnRemove" OnClick="RemovePost" Text="Remove"></asp:Button> 
+
     	</section>
 </asp:Content>
